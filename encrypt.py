@@ -2,7 +2,7 @@ import string
 
 letters = string.ascii_lowercase
 
-message = input("Enter the message to be encrypted: ").lower()
+message = input("\nEnter the message to be encrypted: ").lower()
 
 plaintext = ""
 
@@ -12,19 +12,19 @@ for letter in message:
 
 while True:
     try:
-        fileName = input("Enter the name of the file that contains the key (exclude the .txt): ").strip() + ".txt"
+        fileName = input("\nEnter the name of the file that contains the key (exclude the .txt): ").strip() + ".txt"
         with open(fileName, "r") as f:
                 key = f.read()
         break
     except:
-         print("This file doesn't exist. Try again.\n")
+         print("This file doesn't exist. Try again.")
     
 ciphertext = ""
 
 for i, letter in enumerate(plaintext):
     ciphertext += letters[(letters.index(letter) + letters.index(key[i])) % 26]
 
-print("\nThe used portion of the key has been automatically deleted.\nEncrypted message: " + ciphertext)
+print("\nThe used portion of the key has been automatically deleted.\nEncrypted message: " + ciphertext + "\n")
 
 key = key[len(plaintext):]
 
