@@ -13,19 +13,19 @@ while True:
     try:
         fileName = input("\nEnter the name of the file that contains the key (exclude the .txt): ").strip() + ".txt"
         with open(fileName, "r") as f:
-                key = f.read()
+            key = f.read()
         break
-    except:
-         print("This file doesn't exist. Try again.")
+    except (FileNotFoundError, OSError):
+        print("This file doesn't exist. Try again.")
 
 plaintext = ""
 
 for i, letter in enumerate(ciphertext):
-     plaintext += letters[(letters.index(letter) - letters.index(key[i])) % 26]
-    
+    plaintext += letters[(letters.index(letter) - letters.index(key[i])) % 26]
+
 print("\nThe used portion of the key has been automatically deleted.\nDecrypted message: " + plaintext + "\n")
 
 key = key[len(ciphertext):]
 
 with open(fileName, "w") as f:
-     f.write(key)
+    f.write(key)

@@ -14,10 +14,10 @@ while True:
     try:
         fileName = input("\nEnter the name of the file that contains the key (exclude the .txt): ").strip() + ".txt"
         with open(fileName, "r") as f:
-                key = f.read()
+            key = f.read()
         break
-    except:
-         print("This file doesn't exist. Try again.")
+    except (FileNotFoundError, OSError):
+        print("This file doesn't exist. Try again.")
     
 ciphertext = ""
 
@@ -29,4 +29,4 @@ print("\nThe used portion of the key has been automatically deleted.\nEncrypted 
 key = key[len(plaintext):]
 
 with open(fileName, "w") as f:
-     f.write(key)
+    f.write(key)
